@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/suricat89/nlw-heat-front/tree/master.svg?style=shield)](https://circleci.com/gh/suricat89/nlw-heat-front/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/suricat89/nlw-heat-api/badge.svg?branch=master)](https://coveralls.io/github/suricat89/nlw-heat-api?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/suricat89/nlw-heat-front/badge.svg?branch=master)](https://coveralls.io/github/suricat89/nlw-heat-front?branch=master)
 
 # NLW Heat Front
 
