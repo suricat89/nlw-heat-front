@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/suricat89/nlw-heat-front/tree/master.svg?style=shield)](https://circleci.com/gh/suricat89/nlw-heat-front/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/suricat89/nlw-heat-api/badge.svg?branch=master)](https://coveralls.io/github/suricat89/nlw-heat-api?branch=master)
+
 # NLW Heat Front
 
 React Frontend developed during Rocketseat NLW#Heat event.
@@ -12,3 +15,4 @@ It has the following features:
 - Typescript
 - Sass
 - Socket.io
+- React Testing Library (with 100% coverage!)
