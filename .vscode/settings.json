@@ -1,4 +1,16 @@
 {
   "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "modificationsIfAvailable"
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "jest.autoRun": {
+    "watch": true,
+    "onStartup": [ "all-tests" ]
+  },
+  "jest.showCoverageOnLoad": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.trailingComma": "all",
+  "prettier.typescriptEnable": [
+    "typescript",
+    "typescriptreact"
+  ]
 }

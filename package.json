@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^0.23.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
@@ -14,22 +11,31 @@
     "react-scripts": "5.0.0",
     "react-svg": "^14.1.9",
     "sass": "^1.43.3",
-    "socket.io-client": "^4.3.2",
-    "web-vitals": "^2.1.4"
+    "socket.io-client": "^4.3.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/axios": "^0.14.0",
+    "@types/axios-mock-adapter": "^1.10.0",
+    "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/socket.io-client": "^3.0.0",
+    "axios-mock-adapter": "^1.20.0",
+    "coveralls": "^3.1.1",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.3",
     "typescript": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +54,32 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "clearMocks": true,
+    "coverageReporters": [
+      "json-summary",
+      "text",
+      "lcov"
+    ],
+    "testMatch": [
+      "**/*.spec.[jt]s(x)?"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/config/",
+      "/jest/",
+      "__data__",
+      "__interceptors__",
+      "__tests__",
+      "src/index.tsx"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      }
+    }
   }
 }

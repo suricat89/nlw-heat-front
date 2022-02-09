@@ -6,7 +6,7 @@
   "configurations": [
     {
       "type": "node",
-      "name": "vscode-jest-tests",
+      "name": "Run tests",
       "request": "launch",
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
       "args": [
@@ -19,7 +19,29 @@
       "console": "integratedTerminal",
       "protocol": "inspector",
       "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true
+      "disableOptimisticBPs": true,
+      "outputCapture": "std",
+      "runtimeVersion": "14"
+    },
+    {
+      "type": "node",
+      "name": "Single test",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+      "args": [
+        "test",
+        "--env=jsdom",
+        "--runInBand",
+        "--watchAll=false",
+        "./src/components/__tests__/SendMessageForm.spec.tsx"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "protocol": "inspector",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "outputCapture": "std",
+      "runtimeVersion": "14"
     }
   ]
 }
