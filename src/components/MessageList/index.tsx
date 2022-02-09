@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 
 import styles from './styles.module.scss';
 import logoImg from '../../assets/logo.svg';
-import { ReactComponent as LogoSvg } from '../../assets/logo.svg';
 
 import { Message } from '../../services/nlw-heat-api';
 import * as nlwHeatApi from '../../services/nlw-heat-api';
-import { config } from '../../config/default';
+import { environment } from '../../config/environment';
 
 export function MessageList() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -16,7 +16,7 @@ export function MessageList() {
     setInterval(() => {
       if (messagesQueue.length > 0) {
         setMessages((prevState) => {
-          const { ammountMessages } = config.pages.messageList;
+          const { ammountMessages } = environment.pages.messageList;
           const firstMessageQueue = messagesQueue.shift() as Message;
 
           const newMessageList = [firstMessageQueue];
@@ -27,14 +27,14 @@ export function MessageList() {
           return newMessageList.filter(Boolean);
         });
       }
-    }, config.pages.messageList.refreshQueueTime);
+    }, environment.pages.messageList.refreshQueueTime);
   }, []);
 
   useEffect(() => {
     const getMessages = async () => {
-      const { ammountMessages } = config.pages.messageList;
+      const { ammountMessages } = environment.pages.messageList;
       const apiMessages = await nlwHeatApi.getLatestMessages(ammountMessages);
-      if (apiMessages) {
+      if (apiMessages?.length) {
         setMessages(apiMessages);
       }
     };

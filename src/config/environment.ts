@@ -1,6 +1,8 @@
-import _ from 'lodash';
+/* eslint-disable no-template-curly-in-string */
+// import _ from 'lodash';
+const _ = require('lodash');
 
-export const config = {
+export const environment = {
   pages: {
     messageList: {
       refreshQueueTime:
@@ -13,16 +15,16 @@ export const config = {
     baseUrl:
       process.env.REACT_APP_NLW_HEAT_API_BASE_URL || 'http://localhost:4000',
     getLastMessages: {
-      path: 'message/last?ammountMessages=${ ammountMessages }'
+      path: '/message/last?ammountMessages=${ ammountMessages }'
     },
     sendMessage: {
-      path: 'message'
+      path: '/message'
     },
     signIn: {
-      path: 'user/authenticate'
+      path: '/user/authenticate'
     },
     getUserProfile: {
-      path: 'user/profile'
+      path: '/user/profile'
     }
   },
   github: {

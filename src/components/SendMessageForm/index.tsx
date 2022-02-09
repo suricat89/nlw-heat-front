@@ -17,7 +17,11 @@ export function SendMessageForm() {
 
   return (
     <div className={styles.sendMessageFormWrapper}>
-      <button className={styles.signOutButton} onClick={signOut}>
+      <button
+        className={styles.signOutButton}
+        onClick={signOut}
+        data-testid="signOut"
+      >
         <VscSignOut size="32" />
       </button>
 
@@ -25,7 +29,9 @@ export function SendMessageForm() {
         <div className={styles.userImage}>
           <img src={user?.avatar_url} alt={user?.name} />
         </div>
-        <strong className={styles.userName}>{user?.name}</strong>
+        <strong className={styles.userName} data-testid="userName">
+          {user?.name}
+        </strong>
         <span className={styles.userGithub}>
           <VscGithubInverted size="16" />
           {user?.login}
@@ -42,7 +48,9 @@ export function SendMessageForm() {
           value={message}
         />
 
-        <button type="submit">Enviar mensagem</button>
+        <button type="submit" data-testid="submitMessage">
+          Enviar mensagem
+        </button>
       </form>
     </div>
   );

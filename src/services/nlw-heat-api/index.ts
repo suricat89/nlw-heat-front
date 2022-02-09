@@ -1,14 +1,14 @@
 import axios from 'axios';
 import _ from 'lodash';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { dispatchRequest } from '../../utils/request';
-import { config } from '../../config/default';
+import { environment } from '../../config/environment';
 
 export const api = axios.create({
-  baseURL: config.nlwHeatApi.baseUrl
+  baseURL: environment.nlwHeatApi.baseUrl,
 });
 
-const socket = io(config.nlwHeatApi.baseUrl);
+export const socket = io(environment.nlwHeatApi.baseUrl);
 
 type SocketEvents = 'new_message';
 type SocketCallback<T> = (arg: T) => void;
@@ -37,16 +37,16 @@ interface GetLatestMessagesResponse {
 }
 
 export async function getLatestMessages(ammountMessages: number) {
-  const templateUrl = _.template(config.nlwHeatApi.getLastMessages.path);
+  const templateUrl = _.template(environment.nlwHeatApi.getLastMessages.path);
   const url = templateUrl({
-    ammountMessages
+    ammountMessages,
   });
 
   try {
     const response = await dispatchRequest<GetLatestMessagesResponse>(
       api,
       'GET',
-      url
+      url,
     );
     return response.records;
   } catch (error) {
@@ -57,15 +57,15 @@ export async function getLatestMessages(ammountMessages: number) {
 }
 
 export async function sendMessage(text: string) {
-  const url = config.nlwHeatApi.sendMessage.path;
+  const url = environment.nlwHeatApi.sendMessage.path;
 
   try {
     await dispatchRequest(api, 'POST', url, {
       data: {
         message: {
-          text
-        }
-      }
+          text,
+        },
+      },
     });
   } catch (error) {
     console.error(error);
@@ -89,13 +89,13 @@ interface UserSigninResponse {
 }
 
 export async function signIn(githubCode: string) {
-  const url = config.nlwHeatApi.signIn.path;
+  const url = environment.nlwHeatApi.signIn.path;
 
   const response = await dispatchRequest<UserSigninResponse>(api, 'POST', url, {
     data: {
       code: githubCode,
-      source: 'web'
-    }
+      source: 'web',
+    },
   });
 
   return response.records[0];
@@ -106,12 +106,12 @@ interface GetUserProfileResponse {
 }
 
 export async function getUserProfile() {
-  const url = config.nlwHeatApi.getUserProfile.path;
+  const url = environment.nlwHeatApi.getUserProfile.path;
 
   const response = await dispatchRequest<GetUserProfileResponse>(
     api,
     'GET',
-    url
+    url,
   );
 
   return response.records[0];
