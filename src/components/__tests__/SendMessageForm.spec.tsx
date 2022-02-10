@@ -5,7 +5,11 @@ import { sendMessageFormInterceptors } from '../__interceptors__/SendMessageForm
 import { authInterceptors } from '../__interceptors__/Auth.interceptor';
 
 const customRender = (...components: JSX.Element[]) =>
-  render(<AuthProvider>{[...components]}</AuthProvider>);
+  render(
+    <AuthProvider>
+      {[...components.map((c, i) => ({ ...c, key: i }))]}
+    </AuthProvider>,
+  );
 
 beforeAll(() => {
   authInterceptors.setupInterceptors();

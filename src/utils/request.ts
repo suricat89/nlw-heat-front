@@ -1,5 +1,6 @@
 import { Method, AxiosRequestConfig, AxiosInstance } from 'axios';
 import _ from 'lodash';
+import { environment } from '../config/environment';
 
 interface IRequestConfig extends Omit<AxiosRequestConfig, 'url' | 'method'> {
   timeout?: number;
@@ -10,7 +11,7 @@ export async function dispatchRequest<T>(
   api: AxiosInstance,
   method: Method,
   url: string,
-  config: IRequestConfig = {}
+  config: IRequestConfig = {},
 ): Promise<T> {
   const finalConfig = getConfig(method, config);
   const { timeout, retries } = finalConfig;
@@ -21,12 +22,15 @@ export async function dispatchRequest<T>(
         ...finalConfig,
         timeout,
         method,
-        url
+        url,
       });
 
       return response.data as T;
     } catch (error) {
-      console.error(error);
+      /* istanbul ignore next */
+      if (environment.app.logApiErrors) {
+        console.error(error);
+      }
     }
   }
 

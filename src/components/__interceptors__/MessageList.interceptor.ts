@@ -1,60 +1,27 @@
-import _ from 'lodash';
-import MockAdapter from 'axios-mock-adapter';
 import { environment } from '../../config/environment';
-import { nlwHeatApiData } from '../__data__/services/nlwHeatApi.data';
-import { api, socket } from '../../services/nlw-heat-api';
-import { sleep } from '../../utils/utils';
+import { nlwHeatApiInterceptors } from './nlwHeatApi.interceptor';
 
-const mock = new MockAdapter(api);
-
-function getLastMessagesPath(ammountMessages: number) {
-  return _.template(environment.nlwHeatApi.getLastMessages.path)({
-    ammountMessages,
-  });
+function SML001SetInterceptors() {
+  nlwHeatApiInterceptors.mockSuccessGetLastMessagesResponse(
+    environment.pages.messageList.ammountMessages,
+  );
 }
 
-function mockSuccessGetLastMessagesResponse(ammountMessages: number) {
-  const path = getLastMessagesPath(ammountMessages);
-
-  const response = nlwHeatApiData.getMessageLast.response.success;
-  response.records = response.records.slice(0, ammountMessages);
-
-  mock.onGet(path).reply(200, response);
+function SML002SetInterceptors(socketDelay: number) {
+  nlwHeatApiInterceptors.mockSuccessGetLastMessagesResponse(
+    environment.pages.messageList.ammountMessages,
+  );
+  nlwHeatApiInterceptors.mockSuccessSocketNewMessage(socketDelay);
 }
 
-function mockErrorGetLastMessagesResponse() {
-  const { ammountMessages } = environment.pages.messageList;
-  const path = getLastMessagesPath(ammountMessages);
-
-  mock.onGet(path).reply(500);
-}
-
-async function mockSuccessSocketNewMessage(socketDelay: number) {
-  jest.spyOn(socket, 'on').mockImplementation((event, callback) => {
-    if (event === 'new_message') {
-      const data = nlwHeatApiData.socketReceivedNewMessage.response.success;
-      console.log(data);
-      sleep(socketDelay).then(() => callback(data));
-    }
-    return socket;
-  });
-}
-
-function SML001SetInterceptors(ammountMessages: number) {
-  mockSuccessGetLastMessagesResponse(ammountMessages);
-}
-
-function SML002SetInterceptors(ammountMessages: number, socketDelay: number) {
-  mockSuccessGetLastMessagesResponse(ammountMessages);
-  mockSuccessSocketNewMessage(socketDelay);
-}
-
-function SML003SetInterceptors(ammountMessages: number) {
-  mockSuccessGetLastMessagesResponse(ammountMessages);
+function SML003SetInterceptors() {
+  nlwHeatApiInterceptors.mockSuccessGetLastMessagesResponse(
+    environment.pages.messageList.ammountMessages,
+  );
 }
 
 function EML001SetInterceptors() {
-  mockErrorGetLastMessagesResponse();
+  nlwHeatApiInterceptors.mockErrorGetLastMessagesResponse();
 }
 
 export const messageListInterceptors = {

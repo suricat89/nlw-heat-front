@@ -1,35 +1,36 @@
 import { authInterceptors } from './Auth.interceptor';
+import { nlwHeatApiInterceptors } from './nlwHeatApi.interceptor';
 
 async function SSMF001SetInterceptors() {
   authInterceptors.mockWindowURLWithGithubCode();
-  authInterceptors.mockSuccessSignIn();
+  nlwHeatApiInterceptors.mockSuccessSignIn();
 }
 
 async function SSMF002SetInterceptors() {
   authInterceptors.mockLocalStorageToken();
-  authInterceptors.mockSuccessGetUserProfile();
+  nlwHeatApiInterceptors.mockSuccessGetUserProfile();
 }
 
 async function SSMF003SetInterceptors() {
   authInterceptors.mockWindowURLWithGithubCode();
-  authInterceptors.mockSuccessSignIn();
-  authInterceptors.mockSuccessSendMessage();
+  nlwHeatApiInterceptors.mockSuccessSignIn();
+  nlwHeatApiInterceptors.mockSuccessSendMessage();
 }
 
 async function SSMF004SetInterceptors() {
   authInterceptors.mockWindowURLWithGithubCode();
-  authInterceptors.mockSuccessSignIn();
+  nlwHeatApiInterceptors.mockSuccessSignIn();
 }
 
 async function SSMF005SetInterceptors() {
   authInterceptors.mockWindowURLWithGithubCode();
-  authInterceptors.mockSuccessSignIn();
+  nlwHeatApiInterceptors.mockSuccessSignIn();
 }
 
 async function ESMF001SetInterceptors() {
   authInterceptors.mockWindowURLWithGithubCode();
-  authInterceptors.mockSuccessSignIn();
-  authInterceptors.mockErrorSendMessage();
+  nlwHeatApiInterceptors.mockSuccessSignIn();
+  nlwHeatApiInterceptors.mockErrorSendMessage();
 }
 
 export const sendMessageFormInterceptors = {

@@ -5,12 +5,7 @@
 import '@testing-library/jest-dom';
 
 jest.mock('socket.io-client', () => {
-  return {
-    io: jest.fn(() => ({
-      on: function(event, callback) {
-        console.log('Default socket implementation');
-        callback();
-      }
-    }))
-  };
+  return { io: jest.fn(() => ({ on: function(event) {
+        console.log(`Default socket implementation. Event: ${event}`);
+      } })) };
 });
