@@ -16,3 +16,6 @@ It has the following features:
 - Sass
 - Socket.io
 - React Testing Library (with 100% coverage!)
+
+## Check it out!
+https://suricat-nlw-heat-front.herokuapp.com/
