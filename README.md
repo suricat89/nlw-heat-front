@@ -19,3 +19,31 @@ It has the following features:
 
 ## Check it out!
 https://suricat-nlw-heat-front.herokuapp.com/
+
+## How to run it
+
+First you must create a Github OAuth app following [these instructions](https://github.com/suricat89/nlw-heat-api#creating-github-oauth-apps)
+
+Create the .env file using the example one
+```bash
+cp .env.example .env
+```
+
+Edit the env file and replace the API Base URL with your local API address.
+
+The `REACT_APP_GITHUB_CLIENT_ID` should be the same as the API's `WEB_GITHUB_OAUTH_ID` env value.
+
+After everything is set, run your API locally following [these instructions](https://github.com/suricat89/nlw-heat-api#how-to-run-it).
+
+Install app packages and execute it:
+```bash
+nvm use 14
+npm install
+
+# run it in production mode
+npm run build
+serve -s build
+
+# OR run in development mode
+npm start
+```
